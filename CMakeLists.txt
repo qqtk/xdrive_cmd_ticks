@@ -83,8 +83,9 @@ add_executable(xdrive_cmd_ticks_node src/xdrive_cmd_ticks.cpp)
 ## Install ##
 #############
 
-install(TARGETS xdrive_cmd_ticks_node
-)
+# install(TARGETS xdrive_cmd_ticks_node
+# )
+
 # all install targets should use catkin DESTINATION variables
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
 

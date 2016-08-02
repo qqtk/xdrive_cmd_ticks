@@ -83,7 +83,8 @@ void cmdvel_Callback(const geometry_msgs::Twist::ConstPtr& cmdvel_msg)
   // header
   cmd_vel_pub.publish(wheelspeed_msg);
 }
-#endif
+// #if 1 # endif // a=JunZhen
+
 int main(int argc, char** argv)
 {
   char strBuf[100];

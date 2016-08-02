@@ -15,6 +15,8 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## Generate messages in the 'msg' folder
 add_message_files(
+   DIRECTORY
+   msg
    FILES
    WheelSpeed.msg
 )
@@ -35,10 +37,10 @@ add_message_files(
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES encoder_test
-#  CATKIN_DEPENDS robbase_msg roscpp sensor_msgs std_msgs tf
-#  DEPENDS system_lib
+  INCLUDE_DIRS include
+  LIBRARIES encoder_test
+  CATKIN_DEPENDS robbase_msg roscpp sensor_msgs std_msgs tf
+  DEPENDS
 )
 
 ###########
@@ -49,7 +51,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 # 
 # include_directories(include) # a=JunZhen
-include_directories(
+include_directories(include
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -81,6 +83,8 @@ add_executable(xdrive_cmd_ticks_node src/xdrive_cmd_ticks.cpp)
 ## Install ##
 #############
 
+install(TARGETS xdrive_cmd_ticks_node
+)
 # all install targets should use catkin DESTINATION variables
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
 

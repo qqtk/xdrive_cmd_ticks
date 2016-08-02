@@ -16,6 +16,7 @@
 #include <nav_msgs/Odometry.h>
 #include "xdrive_cmd_ticks/WheelSpeed.h"
 // #include "robbase_msg/WheelSpeed.h"
+#include "robbase_msg/encoders.h"
 // #include "encoder_test/ticks.h"
 
 // #include <map>
@@ -31,7 +32,8 @@ double d_wheel_diameter;
 double d_diam;
 
 ros::NodeHandle *private_n;
-robbase_msg::WheelSpeed wheelspeed_msg;
+// robbase_msg::WheelSpeed wheelspeed_msg;
+xdrive_cmd_ticks::WheelSpeed wheelspeed_msg;
 
 using namespace std;
 int right_wheel_speed;
@@ -119,11 +121,13 @@ int main(int argc, char** argv)
   ROS_INFO("serial connection _ not-use");
   ros::Subscriber cmdvel_sub = nh.subscribe("cmd_vel", 20, cmdvel_Callback);
 
-  ros::Publisher ticksLR_pub = nh.advertise<robbase_msg::ticks>("/ticks", 20);
-  // ros::Publisher ticksLR4_pub = nh.advertise<encoder_test::ticks>("/ticks", 20);
+//  ros::Publisher ticksLR_pub = nh.advertise<robbase_msg::ticks>("/ticks", 20);
+   ros::Publisher ticksLR_pub = nh.advertise<robbase_msg::encoders>("/ticksLR", 20);
+ // ros::Publisher ticksLR4_pub = nh.advertise<encoder_test::ticks>("/ticks", 20);
 //  ros::Publisher ticksMLR_pub = nh.advertise<robbase_msg::RazorImu>("/ticksMLR", 20);
   // showing motor_speed:
-  cmd_vel_pub  = nh.advertise<robbase_msg::WheelSpeed>("/wheelspeed", 10);
+  cmd_vel_pub  = nh.advertise<xdriver_cmd_ticks::WheelSpeed>("/wheelspeed", 10);
+//  cmd_vel_pub  = nh.advertise<robbase_msg::WheelSpeed>("/wheelspeed", 10);
 
   // struct qch.rwheelmotor
 

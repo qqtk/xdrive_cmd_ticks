@@ -141,8 +141,8 @@ int main(int argc, char** argv)
 
     while(ros::ok())
     {
-	xdriver_struct_set("Vlin",&twist_vec);
-	xdriver_struct_set("Vang",&twist_vec);
+	xdriver_struct_set("Vlin",&(twist_vec.Vlin));
+	xdriver_struct_set("Vang",&(twist_vec.Vang));
 
 	tick_vec.tick_lb = xdriver_getValue("tlb");
 	tick_vec.tick_lf  = xdriver_getValue("tlf");
@@ -154,9 +154,9 @@ int main(int argc, char** argv)
 
 	sleep(5);
 
-	twist_vec.Vlin =0;
-	xdriver_struct_set("Vlin",&twist_vec);
-	xdriver_struct_set("Vang",&twist_vec);
+	twist_vec.Vlin =0.0;
+	xdriver_struct_set("Vlin",&(twist_vec.Vlin));
+	xdriver_struct_set("Vang",&(twist_vec.Vang));
 
 	// xdrive_motor();
 	// ticksMsg.rticks = 99; // numA; // 'L'+numA==rwheel

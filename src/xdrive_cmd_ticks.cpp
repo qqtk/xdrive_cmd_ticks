@@ -14,8 +14,8 @@
 #include <signal.h>
 #include <tf/transform_broadcaster.h>
 #include <nav_msgs/Odometry.h>
-#include "xdrive_cmd_ticks/WheelSpeed.h"
-// #include "robbase_msg/WheelSpeed.h"
+// #include "xdrive_cmd_ticks/WheelSpeed.h"
+#include "robbase_msg/WheelSpeed.h"
 #include "robbase_msg/encoders.h"
 // #include "encoder_test/ticks.h"
 
@@ -32,8 +32,8 @@ double d_wheel_diameter;
 double d_diam;
 
 ros::NodeHandle *private_n;
-// robbase_msg::WheelSpeed wheelspeed_msg;
-xdrive_cmd_ticks::WheelSpeed wheelspeed_msg;
+robbase_msg::WheelSpeed wheelspeed_msg;
+// xdrive_cmd_ticks::WheelSpeed wheelspeed_msg;
 
 using namespace std;
 int right_wheel_speed;
@@ -65,7 +65,8 @@ void wheel_update_Speed_callback(const xdrive_unit::WheelSpeed& vel_motors_msg){
     left_wheel_speed = vel_motors_msg.lwheelmotor/d_diam*M_PIpi*reduction_ratio*60;
     right_wheel_speed = vel_motors_msg.rwheelmotor/d_diam*M_PIpi*reduction_ratio*60;
 } */
-#if 1
+// #if 1
+
 void cmdvel_Callback(const geometry_msgs::Twist::ConstPtr& cmdvel_msg)
 {
   twist_vec.Vlin = cmdvel_msg->linear.x;
@@ -108,14 +109,14 @@ int main(int argc, char** argv)
     // float reduction_ratio;
     if(!private_n->getParam("f_reduction_ratio", reduction_ratio))
     {
-        ROS_WARN("No reduction_ratio provided - default: 53");
-        d_exec_rate = 53;
+        ROS_WARN("No reduction_ratio provided - default: 65");
+        d_exec_rate = 65;
     }
 
  float d_diam;
     if(!private_n->getParam("wheel_diam", d_diam)) {
-        ROS_WARN("Not provided: d_diam. Default=39");
-        d_diam  = 39;
+        ROS_WARN("Not provided: d_diam. Default=0.262");
+        d_diam  = 0.262;
     }
 
   ROS_INFO("serial connection _ not-use");
@@ -126,7 +127,7 @@ int main(int argc, char** argv)
  // ros::Publisher ticksLR4_pub = nh.advertise<encoder_test::ticks>("/ticks", 20);
 //  ros::Publisher ticksMLR_pub = nh.advertise<robbase_msg::RazorImu>("/ticksMLR", 20);
   // showing motor_speed:
-  cmd_vel_pub  = nh.advertise<xdriver_cmd_ticks::WheelSpeed>("/wheelspeed", 10);
+  cmd_vel_pub  = nh.advertise<robbase_msg::WheelSpeed>("/wheelspeed", 10);
 //  cmd_vel_pub  = nh.advertise<robbase_msg::WheelSpeed>("/wheelspeed", 10);
 
   // struct qch.rwheelmotor
@@ -147,8 +148,8 @@ int main(int argc, char** argv)
 	tick_vec.tick_rb =  xdriver_getValue("trb");
 	tick_vec.tick_rf = xdriver_getValue("trf");
 
-	ticksMsg.tick_l = int( (tick_vec.tick_lb + tick_vec.tick_lf )*0.5 );
-	ticksMsg.tick_r = int( (tick_vec.tick_rb + tick_vec.tick_rf) *0.5 );
+	ticksMsg.ticks_l = int( (tick_vec.tick_lb + tick_vec.tick_lf )*0.5 );
+	ticksMsg.ticks_r = int( (tick_vec.tick_rb + tick_vec.tick_rf) *0.5 );
 
 	sleep(5);
 

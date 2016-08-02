@@ -5,7 +5,6 @@ project(xdrive_cmd_ticks)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  robbase_msg
   roscpp
   sensor_msgs
   std_msgs

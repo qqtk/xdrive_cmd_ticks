@@ -9,6 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   tf
+  robbase_msg
 )
 #  robbase_msg # re' bitbake donot generate build/--/include/WheelSpeed.h 'y16m8d02'h1750pm
 

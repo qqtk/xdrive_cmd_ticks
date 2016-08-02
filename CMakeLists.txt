@@ -10,14 +10,14 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   tf
-  robbase_msg
 )
+#  robbase_msg # re' bitbake donot generate build/--/include/WheelSpeed.h 'y16m8d02'h1750pm
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   ticks.msg
-# )
+add_message_files(
+   FILES
+   WheelSpeed.msg
+)
 
 ## Generate added messages and services with any dependencies listed here
  generate_messages(

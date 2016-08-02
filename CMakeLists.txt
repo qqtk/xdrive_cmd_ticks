@@ -11,15 +11,15 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   robbase_msg
 )
-#  robbase_msg # re' bitbake donot generate build/--/include/WheelSpeed.h 'y16m8d02'h1750pm
+#  robbase_msg # re' bitbake donot generate build/--/include/WheelSpeed.h 're'solved after changing gitCode'and'md5sum' y16m8d02'h1750pm'h1842pm
 
 ## Generate messages in the 'msg' folder
-add_message_files(
-   DIRECTORY
-   msg
-   FILES
-   WheelSpeed.msg
-)
+# add_message_files(
+#   DIRECTORY
+#   msg
+#   FILES
+#   WheelSpeed.msg
+# )
 
 ## Generate added messages and services with any dependencies listed here
  generate_messages(
@@ -38,10 +38,10 @@ add_message_files(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES encoder_test
-  CATKIN_DEPENDS robbase_msg roscpp sensor_msgs std_msgs tf
-  DEPENDS
+  CATKIN_DEPENDS
+        roscpp message_runtime std_msgs geometry_msgs
 )
+ # CATKIN_DEPENDS robbase_msg roscpp sensor_msgs std_msgs tf
 
 ###########
 ## Build ##
